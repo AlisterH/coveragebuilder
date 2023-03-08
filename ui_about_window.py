@@ -30,7 +30,6 @@ class Ui_About_window(object):
         _translate = QtCore.QCoreApplication.translate
         About_window.setWindowTitle(_translate("About_window", "About Coverage Builder"))
         self.label.setText(_translate("About_window", "Developer : Bertrand Chaussat"))
-        self.label_2.setText(_translate("About_window", "Coverage Builder\n"
-"Version 0.5.0"))
+        self.label_2.setText(_translate("About_window", "Coverage Builder Version 0.5.0"))
 
 from . import resources_rc

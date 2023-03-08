@@ -217,7 +217,7 @@ class CoverageBuilder(object):
                       QCoreApplication.translate("coveragebuilder","irregular coverage layer"))
                 else:
                   QMessageBox.information(self.iface.mainWindow(),"Info", \
-                    QCoreApplication.translate("coveragebuilder","Coverage layer is not vector type"))
+                    QCoreApplication.translate("coveragebuilder","Input layer is not a vector file"))
               else:
                 QMessageBox.information(self.iface.mainWindow(),"Info", \
                   QCoreApplication.translate("coveragebuilder","Please select an input layer to generate coverage layer"))

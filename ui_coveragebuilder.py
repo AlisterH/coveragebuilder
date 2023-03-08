@@ -146,15 +146,12 @@ class Ui_CoverageBuilder(object):
         _translate = QtCore.QCoreApplication.translate
         CoverageBuilder.setWindowTitle(_translate("CoverageBuilder", "Coverage Builder"))
         self.lblComp.setText(_translate("CoverageBuilder", "Print layout :"))
-        self.lblOutDir.setText(_translate("CoverageBuilder", "Outfiles\n"
-"directory :"))
-        self.lblOverlap.setText(_translate("CoverageBuilder", "Overlap\n"
-"% :"))
+        self.lblOutDir.setText(_translate("CoverageBuilder", "Outfiles directory :"))
+        self.lblOverlap.setText(_translate("CoverageBuilder", "Overlap % :"))
         self.btnUpdate.setText(_translate("CoverageBuilder", "..."))
         self.btnShow.setText(_translate("CoverageBuilder", "Show"))
         self.btnBrowse.setText(_translate("CoverageBuilder", "Browse"))
-        self.lblInLayer.setText(_translate("CoverageBuilder", "Coverage\n"
-"layer :"))
+        self.lblInLayer.setText(_translate("CoverageBuilder", "Extent layer :"))
         self.btnCreerSyno.setText(_translate("CoverageBuilder", "Create coverage layer(s)"))
         self.chkGrille.setText(_translate("CoverageBuilder", "Generate regular coverage layer"))
         self.chkDyn.setText(_translate("CoverageBuilder", "Generate irregular coverage layer"))

@@ -96,8 +96,7 @@
     <item row="4" column="0">
      <widget class="QLabel" name="lblOutDir">
       <property name="text">
-       <string>Outfiles
-directory :</string>
+       <string>Outfiles directory :</string>
       </property>
      </widget>
     </item>
@@ -111,8 +110,7 @@ directory :</string>
     <item row="5" column="0">
      <widget class="QLabel" name="lblOverlap">
       <property name="text">
-       <string>Overlap
-% :</string>
+       <string>Overlap % :</string>
       </property>
      </widget>
     </item>
@@ -144,8 +142,7 @@ directory :</string>
     <item row="0" column="0">
      <widget class="QLabel" name="lblInLayer">
       <property name="text">
-       <string>Coverage
-layer :</string>
+       <string>Extent layer :</string>
       </property>
      </widget>
     </item>

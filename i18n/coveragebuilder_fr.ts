@@ -147,7 +147,7 @@ d&apos;emprise :</translation>
     </message>
     <message>
         <location filename="coveragebuilder.py" line="203"/>
-        <source>Coverage layer is not a vector file</source>
+        <source>Extent layer is not a vector file</source>
         <translation>La couche d'emprise n'est pas de type vecteur</translation>
     </message>
     <message>

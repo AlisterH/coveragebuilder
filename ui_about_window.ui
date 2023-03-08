@@ -42,8 +42,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Coverage Builder
-Version 0.5.0</string>
+    <string>Coverage Builder Version 0.5.0</string>
    </property>
   </widget>
  </widget>
