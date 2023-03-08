@@ -25,7 +25,7 @@ from __future__ import absolute_import
 def name():
     return "Coverage Builder"
 def description():
-    return "Create rectangles to use as a input layer for atlas generation"
+    return "Create rectangles to use as an input layer for atlas generation"
 def version():
     return "version 0.5.0"
 def icon():

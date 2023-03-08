@@ -17,7 +17,7 @@
    <enum>Qt::NoFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Grids for Atlas</string>
+   <string>Coverage Builder</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -101,6 +101,21 @@ directory :</string>
       </property>
      </widget>
     </item>
+    <item row="5" column="2">
+     <widget class="QSpinBox" name="overlapInp">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="lblOverlap">
+      <property name="text">
+       <string>Overlap
+% :</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="3">
      <widget class="QToolButton" name="btnUpdate">
       <property name="text">
@@ -136,9 +151,6 @@ layer :</string>
     </item>
     <item row="0" column="2">
      <widget class="QComboBox" name="cbbInLayer"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QComboBox" name="cbbMap"/>
     </item>
    </layout>
   </widget>
@@ -268,7 +280,7 @@ layer :</string>
        </font>
       </property>
       <property name="text">
-       <string>Grids for Atlas</string>
+       <string>Coverage Builder</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>

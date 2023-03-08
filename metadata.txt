@@ -1,6 +1,6 @@
 [general]
 name=Coverage Builder
-description=Create rectangles to use as a input layer for atlas generation
+description=Create rectangles to use as an input layer for atlas generation
 version=version 0.5.0
 author=Alister Hood
 email=alister.hood@gmail.com

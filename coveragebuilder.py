@@ -27,7 +27,7 @@ import os
 import math
 # Import the PyQt and QGIS libraries
 from qgis.PyQt.QtCore import QFileInfo, QCoreApplication, QObject, QVariant
-from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMessageBox
+from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMessageBox, QDialog
 from qgis.PyQt.QtGui import QIcon
 from qgis.core import *
 from qgis.gui import *
@@ -64,7 +64,7 @@ class CoverageBuilder(object):
   def initGui(self):
     # Create action that will start plugin configuration
     self.action = QAction(QIcon(":/plugins/coveragebuilder/icon.png"), \
-      QCoreApplication.translate("coveragebuilder", "&Grids for Atlas"), self.iface.mainWindow())
+      QCoreApplication.translate("coveragebuilder", "&Coverage Builder"), self.iface.mainWindow())
     # Create action for about dialog
     self.action_about = QAction("A&bout...", self.iface.mainWindow())
     # Create action for help dialog
@@ -94,11 +94,11 @@ class CoverageBuilder(object):
     self.dlg.ui.helpButton.clicked.connect(self.showHelp)
     # Add toolbar button and menu item
     self.iface.addToolBarIcon(self.action)
-    self.iface.addPluginToMenu("&Grids for Atlas", self.action)
+    self.iface.addPluginToMenu("&Coverage Builder", self.action)
     # Add about menu entry
-    self.iface.addPluginToMenu("&Grids for Atlas", self.action_about)
+    self.iface.addPluginToMenu("&Coverage Builder", self.action_about)
     # add help menu entry
-    self.iface.addPluginToMenu("&Grids for Atlas", self.action_help)
+    self.iface.addPluginToMenu("&Coverage Builder", self.action_help)
 
   def updateBoxes(self):
     self.updateLayers()
@@ -148,12 +148,12 @@ class CoverageBuilder(object):
 
   def unload(self):
     # Remove the plugin menu item and icon
-    self.iface.removePluginMenu("&Grids for Atlas",self.action)
+    self.iface.removePluginMenu("&Coverage Builder",self.action)
     self.iface.removeToolBarIcon(self.action)
     # Remove about menu entry
-    self.iface.removePluginMenu("&Grids for Atlas", self.action_about)
+    self.iface.removePluginMenu("&Coverage Builder", self.action_about)
     # Remove help menu entry
-    self.iface.removePluginMenu("&Grids for Atlas", self.action_help)
+    self.iface.removePluginMenu("&Coverage Builder", self.action_help)
 
   def creerSyno(self):               
     if os.path.exists(self.dlg.ui.lieOutDir.text()):
@@ -168,7 +168,7 @@ class CoverageBuilder(object):
           if cmap:
             self.ladderHeight = cmap.extent().height()
             self.ladderWidth = cmap.extent().width()
-            self.ladderOvrlpPercent = float(self.dlg.ui.overlapInp.text())
+            self.ladderOvrlpPercent = self.dlg.ui.overlapInp.value()
             if self.ladderOvrlpPercent < 100 and self.ladderOvrlpPercent >= 0:
               self.overlapW = self.ladderWidth * self.ladderOvrlpPercent / 100;
               self.overlapH = self.ladderHeight * self.ladderOvrlpPercent / 100;
@@ -220,7 +220,7 @@ class CoverageBuilder(object):
                     QCoreApplication.translate("coveragebuilder","Coverage layer is not vector type"))
               else:
                 QMessageBox.information(self.iface.mainWindow(),"Info", \
-                  QCoreApplication.translate("coveragebuilder","Please select a input layer to generate coverage layer"))
+                  QCoreApplication.translate("coveragebuilder","Please select an input layer to generate coverage layer"))
             else:
               QMessageBox.information(self.iface.mainWindow(),"Info", \
                 QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 100"))

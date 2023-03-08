@@ -4,7 +4,7 @@
     <name>About_window</name>
     <message>
         <location filename="ui_about_window.py" line="32"/>
-        <source>About Grids for Atlas</source>
+        <source>About Coverage Builder</source>
         <translation>A propos de Synoptiques Atlas</translation>
     </message>
     <message>
@@ -19,7 +19,7 @@ dev-qgis@biotope.fr</translation>
     <name>CoverageBuilder</name>
     <message>
         <location filename="ui_coveragebuilder.py" line="161"/>
-        <source>Grids for Atlas</source>
+        <source>Coverage Builder</source>
         <translation>Synoptiques pour l&apos;Atlas</translation>
     </message>
     <message>
@@ -76,7 +76,7 @@ d&apos;emprise :</translation>
     <name>help_window</name>
     <message>
         <location filename="ui_help_window.py" line="30"/>
-        <source>Grids for Atlas Help</source>
+        <source>Coverage Builder Help</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -89,7 +89,7 @@ d&apos;emprise :</translation>
     </message>
     <message>
         <location filename="__init__.py" line="27"/>
-        <source>Create rectangles to use as a input layer for atlas generation</source>
+        <source>Create rectangles to use as an input layer for atlas generation</source>
         <translation>Creation de synoptiques grille ou dynamique pour utiliser dans un atlas</translation>
     </message>
 </context>
@@ -152,7 +152,7 @@ d&apos;emprise :</translation>
     </message>
     <message>
         <location filename="coveragebuilder.py" line="206"/>
-        <source>Please select a input layer to generate coverage layer</source>
+        <source>Please select an input layer to generate coverage layer</source>
         <translation>Selectionnez une couche pour en generer le synoptique</translation>
     </message>
     <message>
