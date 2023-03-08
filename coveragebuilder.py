@@ -35,11 +35,11 @@ from qgis.utils import *
 # Initialize Qt resources from file resources.py
 from . import resources_rc
 # Import the code for the dialog
-from .synoptiquesatlasdialog import SynoptiquesAtlasDialog
+from .coveragebuilderdialog import CoverageBuilderDialog
 #from ui_help_window import Ui_help_window
 from .ui_about_window import Ui_About_window
 
-class SynoptiquesAtlas(object):
+class CoverageBuilder(object):
 
   def __init__(self, iface):
     # Save reference to the QGIS interface
@@ -52,23 +52,23 @@ class SynoptiquesAtlas(object):
     #locale = QSettings().value("locale/userLocale").toString()
     #self.myLocale = locale[0:2]
     #if QFileInfo(self.syn_atlas_plugin_dir).exists():
-    #  localePath = self.syn_atlas_plugin_dir + "/i18n/synoptiquesatlas_" + self.myLocale + ".qm"
+    #  localePath = self.syn_atlas_plugin_dir + "/i18n/coveragebuilder_" + self.myLocale + ".qm"
     #if QFileInfo(localePath).exists():
     #  self.translator = QTranslator()
     #  self.translator.load(localePath)
     #  if qVersion() > '4.3.3':
     #        QCoreApplication.installTranslator(self.translator)
     # create and show the dialog
-    self.dlg = SynoptiquesAtlasDialog()
+    self.dlg = CoverageBuilderDialog()
 
   def initGui(self):
     # Create action that will start plugin configuration
-    self.action = QAction(QIcon(":/plugins/synoptiquesatlas/icon.png"), \
-      QCoreApplication.translate("synoptiquesatlas", "&Grids for Atlas"), self.iface.mainWindow())
+    self.action = QAction(QIcon(":/plugins/coveragebuilder/icon.png"), \
+      QCoreApplication.translate("coveragebuilder", "&Grids for Atlas"), self.iface.mainWindow())
     # Create action for about dialog
     self.action_about = QAction("A&bout...", self.iface.mainWindow())
     # Create action for help dialog
-    self.action_help = QAction(QIcon(":/plugins/synoptiquesatlas/about.png"), QCoreApplication.translate("synoptiquesatlas", "&Help..."), self.iface.mainWindow())
+    self.action_help = QAction(QIcon(":/plugins/coveragebuilder/about.png"), QCoreApplication.translate("coveragebuilder", "&Help..."), self.iface.mainWindow())
     # connect the action to the run method
     self.action.triggered.connect(self.run)
     # connect about action to about dialog
@@ -144,7 +144,7 @@ class SynoptiquesAtlas(object):
 
   def updateOutputDir(self):
     self.dlg.ui.lieOutDir.setText(QFileDialog.getExistingDirectory(self.dlg, \
-      QCoreApplication.translate("synoptiquesatlas", "Choose output directory")))
+      QCoreApplication.translate("coveragebuilder", "Choose output directory")))
 
   def unload(self):
     # Remove the plugin menu item and icon
@@ -186,13 +186,13 @@ class SynoptiquesAtlas(object):
                   self.extent = self.bcLayer.boundingBoxOfSelected()
                   self.sLayer = self.addSynoFeatures()
                   self.fill_references(self.sLayer)
-                  self.synopt_shape_path = self.dlg.ui.lieOutDir.text() + QCoreApplication.translate("synoptiquesatlas","/classic_grid.shp")
+                  self.synopt_shape_path = self.dlg.ui.lieOutDir.text() + QCoreApplication.translate("coveragebuilder","/regular_grid.shp")
                   self.createPhysLayerFromList(self.synopt_shape_path, self.sLayer)
                   if self.gridSynopt:  
                     self.sLayer = self.loadQgsVectorLayer(self.synopt_shape_path, \
-                      QCoreApplication.translate("synoptiquesatlas","classic grid"))
+                      QCoreApplication.translate("coveragebuilder","regular coverage layer"))
                   else:
-                    self.sLayer = QgsVectorLayer(self.synopt_shape_path, QCoreApplication.translate("synoptiquesatlas","classic grid"), "ogr")                          
+                    self.sLayer = QgsVectorLayer(self.synopt_shape_path, QCoreApplication.translate("coveragebuilder","regular coverage layer"), "ogr")                          
                     # TODO                
                     # Manage symbology
                     #if not hasattr(self.sLayer, 'isUsingRendererV2'):
@@ -203,7 +203,7 @@ class SynoptiquesAtlas(object):
                     #  rendererV2 = layer.rendererV2()  
                   # Grid layer was created, access to the second stage
                   if self.dynSynopt:
-                    self.finalSynopt_shape_path = self.dlg.ui.lieOutDir.text() + QCoreApplication.translate("synoptiquesatlas","/dyn_grid.shp")
+                    self.finalSynopt_shape_path = self.dlg.ui.lieOutDir.text() + QCoreApplication.translate("coveragebuilder","/dyn_grid.shp")
                     self.intersect(self.bcLayer,self.sLayer)
                     self.createIntersectionLayer()
                     self.new_ladders_list = []
@@ -214,26 +214,26 @@ class SynoptiquesAtlas(object):
                     self.fill_references(self.sLayer3)
                     self.createPhysLayerFromList(self.finalSynopt_shape_path, self.sLayer3)
                     self.sLayer3 = self.loadQgsVectorLayer(self.finalSynopt_shape_path, \
-                      QCoreApplication.translate("synoptiquesatlas","dynamic grid"))
+                      QCoreApplication.translate("coveragebuilder","irregular coverage layer"))
                 else:
                   QMessageBox.information(self.iface.mainWindow(),"Info", \
-                    QCoreApplication.translate("synoptiquesatlas","Coverage layer is not vector type"))
+                    QCoreApplication.translate("coveragebuilder","Coverage layer is not vector type"))
               else:
                 QMessageBox.information(self.iface.mainWindow(),"Info", \
-                  QCoreApplication.translate("synoptiquesatlas","Please select a coverage layer to generate grid"))
+                  QCoreApplication.translate("coveragebuilder","Please select a input layer to generate coverage layer"))
             else:
               QMessageBox.information(self.iface.mainWindow(),"Info", \
-                QCoreApplication.translate("synoptiquesatlas","Overlap % must be between 0 and 100"))
+                QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 100"))
           else:
               QMessageBox.information(self.iface.mainWindow(),"Info", \
-                  QCoreApplication.translate("synoptiquesatlas","There is no map object for print layout selected"))
+                  QCoreApplication.translate("coveragebuilder","There is no map object for print layout selected"))
         else:
           QMessageBox.information(self.iface.mainWindow(),"Info", \
-            QCoreApplication.translate("synoptiquesatlas","Please select a print layout, if none is active you have to create it"))
+            QCoreApplication.translate("coveragebuilder","Please select a print layout, if none exist you have to create one"))
       else:
-        QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("synoptiquesatlas","Choose a grid type"))
+        QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("coveragebuilder","Choose a coverage layer type"))
     else:
-      QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("synoptiquesatlas","Please enter an existing OutFiles directory"))
+      QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("coveragebuilder","Please enter an existing OutFiles directory"))
 
   def doBuffer(self):
     maxDim = max(self.ladderHeight,self.ladderWidth)
@@ -380,10 +380,10 @@ class SynoptiquesAtlas(object):
       "CP1250", layer.crs(), "ESRI Shapefile")
     if error != QgsVectorFileWriter.NoError:
       QMessageBox.information(self.iface.mainWindow(),"Info", \
-        QCoreApplication.translate("synoptiquesatlas","Error when creating shapefile:\n") + shapePath + QCoreApplication.translate("synoptiquesatlas","\nPlease delete or rename the former grid layers"))
+        QCoreApplication.translate("coveragebuilder","Error when creating shapefile:\n") + shapePath + QCoreApplication.translate("coveragebuilder","\nPlease delete or rename the existing output files"))
 
   def intersect(self, perimetre, calepinage):
-  # Intersect between coverage and grid
+  # Intersect between input layer and coverage layer
     self.centroid_list = []
     self.splitted_fet_list = []
     i = 0    
@@ -450,7 +450,7 @@ class SynoptiquesAtlas(object):
     layerToLoad = QgsVectorLayer(shapePath, layerName, "ogr")
     if not layerToLoad.isValid():
       QMessageBox.information(self.iface.mainWindow(),"Info", \
-        QCoreApplication.translate("synoptiquesatlas","Error while loading layer ") + layerName + " !")
+        QCoreApplication.translate("coveragebuilder","Error while loading layer ") + layerName + " !")
     else:
       QgsProject.instance().addMapLayer(layerToLoad)
       return layerToLoad
@@ -485,7 +485,7 @@ class SynoptiquesAtlas(object):
     showPluginHelp()
 
   def showAbout(self):
-    """Show Synoptiques Atlas about dialog box"""
+    """Show Coverage Builder about dialog box"""
     adialog = QDialog()
     adialog.ui = Ui_About_window()
     adialog.ui.setupUi(adialog)

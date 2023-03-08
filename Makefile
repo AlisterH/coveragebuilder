@@ -1,5 +1,5 @@
 #/***************************************************************************
-# SynoptiquesAtlas
+# CoverageBuilder
 # 
 # Creation de synoptiques grille ou dynamique pour utiliser dans un atlas
 #                             -------------------
@@ -23,17 +23,17 @@ PLUGIN_UPLOAD = $(CURDIR)/plugin_upload.py
 
 # translation
 I18N = i18n
-SOURCES = synoptiquesatlas.py synoptiquesatlasdialog.py __init__.py ui_synoptiquesatlas.py ui_help_window.py ui_about_window.py 
-TRANSLATIONS = $(I18N)/synoptiquesatlas_fr.ts
+SOURCES = coveragebuilder.py coveragebuilderdialog.py __init__.py ui_coveragebuilder.py ui_help_window.py ui_about_window.py 
+TRANSLATIONS = $(I18N)/coveragebuilder_fr.ts
 
 # global
-PLUGINNAME = synoptiquesatlas
+PLUGINNAME = coveragebuilder
 
-PY_FILES = synoptiquesatlas.py synoptiquesatlasdialog.py __init__.py
+PY_FILES = coveragebuilder.py coveragebuilderdialog.py __init__.py
 
 EXTRAS = icon.png about.png metadata.txt
 
-UI_FILES = ui_synoptiquesatlas.py ui_help_window.py ui_about_window.py
+UI_FILES = ui_coveragebuilder.py ui_help_window.py ui_about_window.py
 
 RESOURCE_FILES = resources_rc.py
 

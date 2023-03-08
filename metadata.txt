@@ -1,11 +1,11 @@
 [general]
-name=Grids for Atlas 2
-description=Create grids for atlas
+name=Coverage Builder
+description=Create rectangles to use as a input layer for atlas generation
 version=version 0.5.0
-author=Dmitry Kiselev
-email=dmitry.v.kiselev@gmail.com
+author=Alister Hood
+email=alister.hood@gmail.com
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
-class_name=SynoptiquesAtlas
-website=https://github.com/kiselev-dv/qgis-grids-for-atlas
+class_name=CoverageBuilder
+website=https://github.com/alisterh/coveragebuilder
 experimental=True

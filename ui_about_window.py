@@ -25,7 +25,7 @@ class Ui_About_window(object):
         self.lbl_Biotope.setFrameShape(QtGui.QFrame.Box)
         self.lbl_Biotope.setFrameShadow(QtGui.QFrame.Raised)
         self.lbl_Biotope.setText(_fromUtf8(""))
-        self.lbl_Biotope.setPixmap(QtGui.QPixmap(_fromUtf8(":/plugins/synoptiquesatlas/Biotope_Origami.jpg")))
+        self.lbl_Biotope.setPixmap(QtGui.QPixmap(_fromUtf8(":/plugins/coveragebuilder/Biotope_Origami.jpg")))
         self.lbl_Biotope.setScaledContents(True)
         self.lbl_Biotope.setObjectName(_fromUtf8("lbl_Biotope"))
         self.label = QtGui.QLabel(About_window)

@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/plugins/synoptiquesatlas">
+  <qresource prefix="/plugins/coveragebuilder">
     <file>about.png</file>
     <file>refresh.png</file>
     <file>grille_dyn.png</file>

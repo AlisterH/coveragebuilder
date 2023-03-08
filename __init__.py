@@ -1,6 +1,6 @@
 """
 /***************************************************************************
- SynoptiquesAtlas
+ CoverageBuilder
                                  A QGIS plugin
  Creation de synoptiques grille ou dynamique pour utiliser dans un atlas
                              -------------------
@@ -23,17 +23,17 @@ from __future__ import absolute_import
 # from PyQt4.QtCore import *
 
 def name():
-    return "Grids for Atlas"
+    return "Coverage Builder"
 def description():
-    return "Create grids for atlas"
+    return "Create rectangles to use as a input layer for atlas generation"
 def version():
-    return "version 0.3.0"
+    return "version 0.5.0"
 def icon():
     return "icon.png"
 def qgisMinimumVersion():
-    return "1.8"
+    return "3.0"
 
 def classFactory(iface):
-    # load SynoptiquesAtlas class from file SynoptiquesAtlas
-    from .synoptiquesatlas import SynoptiquesAtlas
-    return SynoptiquesAtlas(iface)
+    # load CoverageBuilder class from file CoverageBuilder
+    from .coveragebuilder import CoverageBuilder
+    return CoverageBuilder(iface)

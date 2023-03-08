@@ -1,6 +1,6 @@
 """
 /***************************************************************************
- SynoptiquesAtlasDialog
+ CoverageBuilderDialog
                                  A QGIS plugin
  Creation de synoptiques grille ou dynamique pour utiliser dans un atlas
                              -------------------
@@ -20,11 +20,11 @@
 """
 
 from qgis.PyQt import QtGui, QtWidgets
-from .ui_synoptiquesatlas import Ui_SynoptiquesAtlas
+from .ui_coveragebuilder import Ui_CoverageBuilder
 # create the dialog for zoom to point
-class SynoptiquesAtlasDialog(QtWidgets.QDialog):
+class CoverageBuilderDialog(QtWidgets.QDialog):
     def __init__(self):
         QtWidgets.QDialog.__init__(self)
         # Set up the user interface from Designer.
-        self.ui = Ui_SynoptiquesAtlas()
+        self.ui = Ui_CoverageBuilder()
         self.ui.setupUi(self)
