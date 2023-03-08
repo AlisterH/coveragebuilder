@@ -102,6 +102,12 @@
     </item>
     <item row="5" column="2">
      <widget class="QSpinBox" name="overlapInp">
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="singleStep">
+       <number>5</number>
+      </property>
       <property name="value">
        <number>0</number>
       </property>

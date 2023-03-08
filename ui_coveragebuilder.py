@@ -48,6 +48,8 @@ class Ui_CoverageBuilder(object):
         self.lblOutDir.setObjectName("lblOutDir")
         self.gridLayout.addWidget(self.lblOutDir, 4, 0, 1, 1)
         self.overlapInp = QtWidgets.QSpinBox(self.gridLayoutWidget)
+        self.overlapInp.setMaximum(50)
+        self.overlapInp.setSingleStep(5)
         self.overlapInp.setProperty("value", 0)
         self.overlapInp.setObjectName("overlapInp")
         self.gridLayout.addWidget(self.overlapInp, 5, 2, 1, 1)

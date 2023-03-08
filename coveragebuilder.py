@@ -155,7 +155,7 @@ class CoverageBuilder(object):
     # Remove help menu entry
     self.iface.removePluginMenu("&Coverage Builder", self.action_help)
 
-  def creerSyno(self):               
+  def creerSyno(self):
     if os.path.exists(self.dlg.ui.lieOutDir.text()):
       self.gridSynopt = self.dlg.ui.chkGrille.isChecked()
       self.dynSynopt = self.dlg.ui.chkDyn.isChecked()
@@ -169,9 +169,11 @@ class CoverageBuilder(object):
             self.ladderHeight = cmap.extent().height()
             self.ladderWidth = cmap.extent().width()
             self.ladderOvrlpPercent = self.dlg.ui.overlapInp.value()
-            if self.ladderOvrlpPercent < 100 and self.ladderOvrlpPercent >= 0:
-              self.overlapW = self.ladderWidth * self.ladderOvrlpPercent / 100;
-              self.overlapH = self.ladderHeight * self.ladderOvrlpPercent / 100;
+            #ajh: this code obviously doesn't work if overlap is 100%, and it seems to freeze if it is close to 100%
+            #     but is there any real use case for >50%?
+            if self.ladderOvrlpPercent <= 50 and self.ladderOvrlpPercent >= 0: #ajh: shouldn't need this check anymore
+              self.overlapW = self.ladderWidth * self.ladderOvrlpPercent / 200;
+              self.overlapH = self.ladderHeight * self.ladderOvrlpPercent / 200;
               self.ladderWidth = self.ladderWidth - self.overlapW * 2.;
               self.ladderHeight = self.ladderHeight - self.overlapH * 2.;
               if self.cLayer:
@@ -223,7 +225,7 @@ class CoverageBuilder(object):
                   QCoreApplication.translate("coveragebuilder","Please select an input layer to generate coverage layer"))
             else:
               QMessageBox.information(self.iface.mainWindow(),"Info", \
-                QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 100"))
+                QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 50"))
           else:
               QMessageBox.information(self.iface.mainWindow(),"Info", \
                   QCoreApplication.translate("coveragebuilder","There is no map object for print layout selected"))
