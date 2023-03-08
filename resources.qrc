@@ -1,6 +1,5 @@
 <RCC>
   <qresource prefix="/plugins/synoptiquesatlas">
-    <file>Biotope_Origami.jpg</file>
     <file>about.png</file>
     <file>refresh.png</file>
     <file>grille_dyn.png</file>
