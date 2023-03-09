@@ -23,7 +23,7 @@ PLUGIN_UPLOAD = $(CURDIR)/plugin_upload.py
 
 # translation
 I18N = i18n
-SOURCES = coveragebuilder.py coveragebuilderdialog.py __init__.py ui_coveragebuilder.py ui_help_window.py ui_about_window.py 
+SOURCES = coveragebuilder.py coveragebuilderdialog.py __init__.py ui_coveragebuilder.py ui_about_window.py 
 TRANSLATIONS = $(I18N)/coveragebuilder_fr.ts
 
 # global
@@ -33,11 +33,11 @@ PY_FILES = coveragebuilder.py coveragebuilderdialog.py __init__.py
 
 EXTRAS = icon.png about.png metadata.txt
 
-UI_FILES = ui_coveragebuilder.py ui_help_window.py ui_about_window.py
+UI_FILES = ui_coveragebuilder.py ui_about_window.py
 
 RESOURCE_FILES = resources_rc.py
 
-DOCUMENTATION = help
+DOCUMENTATION = help/*
 
 
 default: compile
