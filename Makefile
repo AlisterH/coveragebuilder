@@ -48,7 +48,7 @@ compile: $(UI_FILES) $(RESOURCE_FILES)
 	pyrcc5 -o $@  $<
 
 %.py : %.ui
-	pyuic5 -o $@ $<
+	pyuic5 --from-imports --resource-suffix= -o $@ $<
 
 # The deploy  target only works on unix like operating system where
 # the Python plugin directory is located at:
