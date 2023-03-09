@@ -12,12 +12,12 @@ class Ui_CoverageBuilder(object):
     def setupUi(self, CoverageBuilder):
         CoverageBuilder.setObjectName("CoverageBuilder")
         CoverageBuilder.setWindowModality(QtCore.Qt.NonModal)
-        CoverageBuilder.resize(507, 460)
+        CoverageBuilder.resize(510, 460)
         CoverageBuilder.setFocusPolicy(QtCore.Qt.NoFocus)
         self.buttonBox = QtWidgets.QDialogButtonBox(CoverageBuilder)
-        self.buttonBox.setGeometry(QtCore.QRect(0, 410, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(-50, 410, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
         self.buttonBox.setObjectName("buttonBox")
         self.lblGrille = QtWidgets.QLabel(CoverageBuilder)
         self.lblGrille.setGeometry(QtCore.QRect(90, 70, 41, 51))
@@ -78,7 +78,7 @@ class Ui_CoverageBuilder(object):
         self.btnCreerSyno.setGeometry(QtCore.QRect(150, 370, 201, 27))
         self.btnCreerSyno.setObjectName("btnCreerSyno")
         self.chkGrille = QtWidgets.QCheckBox(CoverageBuilder)
-        self.chkGrille.setGeometry(QtCore.QRect(140, 80, 211, 22))
+        self.chkGrille.setGeometry(QtCore.QRect(140, 80, 351, 22))
         self.chkGrille.setObjectName("chkGrille")
         self.chkDyn = QtWidgets.QCheckBox(CoverageBuilder)
         self.chkDyn.setGeometry(QtCore.QRect(140, 140, 251, 22))
@@ -142,6 +142,7 @@ class Ui_CoverageBuilder(object):
         self.retranslateUi(CoverageBuilder)
         self.buttonBox.accepted.connect(CoverageBuilder.accept)
         self.buttonBox.rejected.connect(CoverageBuilder.reject)
+        self.buttonBox.clicked['QAbstractButton*'].connect(CoverageBuilder.accept)
         QtCore.QMetaObject.connectSlotsByName(CoverageBuilder)
 
     def retranslateUi(self, CoverageBuilder):
@@ -161,3 +162,4 @@ class Ui_CoverageBuilder(object):
         self.lblEntete.setText(_translate("CoverageBuilder", "Coverage Builder"))
         self.helpButton.setText(_translate("CoverageBuilder", "..."))
 
+from . import resources
