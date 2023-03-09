@@ -32,4 +32,3 @@ class Ui_About_window(object):
         self.label.setText(_translate("About_window", "Developer : Bertrand Chaussat"))
         self.label_2.setText(_translate("About_window", "Coverage Builder Version 0.5.0"))
 
-from . import resources_rc

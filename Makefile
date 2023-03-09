@@ -35,7 +35,7 @@ EXTRAS = icon.png about.png metadata.txt
 
 UI_FILES = ui_coveragebuilder.py ui_about_window.py
 
-RESOURCE_FILES = resources_rc.py
+RESOURCE_FILES = resources.py
 
 DOCUMENTATION = help/*
 
@@ -44,7 +44,7 @@ default: compile
 
 compile: $(UI_FILES) $(RESOURCE_FILES)
 
-%_rc.py : %.qrc
+%.py : %.qrc
 	pyrcc5 -o $@  $<
 
 %.py : %.ui

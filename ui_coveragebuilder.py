@@ -161,4 +161,3 @@ class Ui_CoverageBuilder(object):
         self.lblEntete.setText(_translate("CoverageBuilder", "Coverage Builder"))
         self.helpButton.setText(_translate("CoverageBuilder", "..."))
 
-from . import resources_rc

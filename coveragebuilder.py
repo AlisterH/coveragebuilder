@@ -33,7 +33,7 @@ from qgis.core import *
 from qgis.gui import *
 from qgis.utils import *
 # Initialize Qt resources from file resources.py
-from . import resources_rc
+from . import resources
 # Import the code for the dialog
 from .coveragebuilderdialog import CoverageBuilderDialog
 #from ui_help_window import Ui_help_window
