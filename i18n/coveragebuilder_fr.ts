@@ -157,7 +157,7 @@ d&apos;emprise :</translation>
     </message>
     <message>
         <location filename="coveragebuilder.py" line="209"/>
-        <source>Please select a print layout, if none exist you have to create one</source>
+        <source>Please select a print layout, if none exist you need to create one</source>
         <translation>Selectionnez un composeur, s'il n'y en a pas d'actif vous devez le creer</translation>
     </message>
     <message>

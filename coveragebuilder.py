@@ -107,9 +107,19 @@ class CoverageBuilder(object):
 
   def updateLayers(self):
     self.dlg.ui.cbbInLayer.clear()
+#    # ajh: this method shows layers that are turned off, but doesn't show layers in embedded projects, and lists top level groups but not layers inside them...
+#    # Fetch the currently loaded layers
+#    layers = QgsProject.instance().layerTreeRoot().children()
+#    # Populate the comboBox with names of all the loaded layers
+#    self.dlg.ui.cbbInLayer.addItems([layer.name() for layer in layers])
+    # ajh: this shows both raster and vector layers that are turned on!  We want vector layers whether or not they are turned on.
     for layer in self.iface.mapCanvas().layers():
-      #self.dlg.ui.cbbInLayer.addItem(layer.name(), QVariant(layer))
-      self.dlg.ui.cbbInLayer.addItem(layer.name(), layer)
+      if layer.type() == QgsMapLayer.VectorLayer:
+        #self.dlg.ui.cbbInLayer.addItem(layer.name(), QVariant(layer))
+        self.dlg.ui.cbbInLayer.addItem(layer.name(), layer)
+        if layer in self.iface.layerTreeView().selectedLayers():
+          self.dlg.ui.cbbInLayer.setCurrentIndex(self.dlg.ui.cbbInLayer.count()-1)
+          # see mmqis source if we want to remove duplicates
 
   # (c) Carson Farmer / fTools
   def getVectorLayerByName(self,myName):
@@ -130,7 +140,7 @@ class CoverageBuilder(object):
     projectLayoutManager = projectInstance.layoutManager()
     self.layouts = projectLayoutManager.printLayouts()
     for cv in self.layouts:
-      #QMessageBox.information(self.iface.mainWindow(),"Info", \
+      #QMessageBox.information(None,"Info", \
       #    "testing")
       self.dlg.ui.cbbComp.addItem(cv.name(), cv)
     self.layout = self.dlg.ui.cbbComp.itemData(self.dlg.ui.cbbComp.currentIndex())#.toPyObject()
@@ -198,7 +208,7 @@ class CoverageBuilder(object):
                     # TODO                
                     # Manage symbology
                     #if not hasattr(self.sLayer, 'isUsingRendererV2'):
-                    #  QMessageBox.information(self.iface.mainWindow(),"Info", \
+                    #  QMessageBox.information(None,"Info", \
                     #  "La symbologie ne peut etre affichee vous utilisez une version ancienne de QGIS")
                     #elif layer.isUsingRendererV2():
                     # new symbology - subclass of QgsFeatureRendererV2 class
@@ -218,24 +228,24 @@ class CoverageBuilder(object):
                     self.sLayer3 = self.loadQgsVectorLayer(self.finalSynopt_shape_path, \
                       QCoreApplication.translate("coveragebuilder","irregular coverage layer"))
                 else:
-                  QMessageBox.information(self.iface.mainWindow(),"Info", \
+                  QMessageBox.information(None,"Info", \
                     QCoreApplication.translate("coveragebuilder","Input layer is not a vector file"))
               else:
-                QMessageBox.information(self.iface.mainWindow(),"Info", \
+                QMessageBox.information(None,"Info", \
                   QCoreApplication.translate("coveragebuilder","Please select an input layer to generate coverage layer"))
             else:
-              QMessageBox.information(self.iface.mainWindow(),"Info", \
+              QMessageBox.information(None,"Info", \
                 QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 50"))
           else:
-              QMessageBox.information(self.iface.mainWindow(),"Info", \
+              QMessageBox.information(None,"Info", \
                   QCoreApplication.translate("coveragebuilder","There is no map object for print layout selected"))
         else:
-          QMessageBox.information(self.iface.mainWindow(),"Info", \
-            QCoreApplication.translate("coveragebuilder","Please select a print layout, if none exist you have to create one"))
+          QMessageBox.information(None,"Info", \
+            QCoreApplication.translate("coveragebuilder","Please select a print layout, if none exist you need to create one"))
       else:
-        QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("coveragebuilder","Choose a coverage layer type"))
+        QMessageBox.information(None,"Info", QCoreApplication.translate("coveragebuilder","Choose a coverage layer type"))
     else:
-      QMessageBox.information(self.iface.mainWindow(),"Info", QCoreApplication.translate("coveragebuilder","Please enter an existing OutFiles directory"))
+      QMessageBox.information(None,"Info", QCoreApplication.translate("coveragebuilder","Please enter an existing OutFiles directory"))
 
   def doBuffer(self):
     maxDim = max(self.ladderHeight,self.ladderWidth)
@@ -381,7 +391,7 @@ class CoverageBuilder(object):
     error, error_string = QgsVectorFileWriter.writeAsVectorFormat(layer, shapePath, \
       "CP1250", layer.crs(), "ESRI Shapefile")
     if error != QgsVectorFileWriter.NoError:
-      QMessageBox.information(self.iface.mainWindow(),"Info", \
+      QMessageBox.information(None,"Info", \
         QCoreApplication.translate("coveragebuilder","Error when creating shapefile:\n") + shapePath + QCoreApplication.translate("coveragebuilder","\nPlease delete or rename the existing output files"))
 
   def intersect(self, perimetre, calepinage):
@@ -451,7 +461,7 @@ class CoverageBuilder(object):
   def loadQgsVectorLayer(self, shapePath, layerName):
     layerToLoad = QgsVectorLayer(shapePath, layerName, "ogr")
     if not layerToLoad.isValid():
-      QMessageBox.information(self.iface.mainWindow(),"Info", \
+      QMessageBox.information(None,"Info", \
         QCoreApplication.translate("coveragebuilder","Error while loading layer ") + layerName + " !")
     else:
       QgsProject.instance().addMapLayer(layerToLoad)
