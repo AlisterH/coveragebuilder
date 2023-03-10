@@ -71,7 +71,7 @@ class Ui_CoverageBuilder(object):
         self.lblInLayer = QtWidgets.QLabel(self.gridLayoutWidget)
         self.lblInLayer.setObjectName("lblInLayer")
         self.gridLayout.addWidget(self.lblInLayer, 0, 0, 1, 1)
-        self.cbbInLayer = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.cbbInLayer = gui.QgsMapLayerComboBox(self.gridLayoutWidget)
         self.cbbInLayer.setObjectName("cbbInLayer")
         self.gridLayout.addWidget(self.cbbInLayer, 0, 2, 1, 1)
         self.btnCreerSyno = QtWidgets.QPushButton(CoverageBuilder)
@@ -162,4 +162,5 @@ class Ui_CoverageBuilder(object):
         self.lblEntete.setText(_translate("CoverageBuilder", "Coverage Builder"))
         self.helpButton.setText(_translate("CoverageBuilder", "..."))
 
+from qgis import gui
 from . import resources

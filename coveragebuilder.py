@@ -60,6 +60,7 @@ class CoverageBuilder(object):
     #        QCoreApplication.installTranslator(self.translator)
     # create and show the dialog
     self.dlg = CoverageBuilderDialog()
+    self.dlg.ui.cbbInLayer.setFilters(QgsMapLayerProxyModel.VectorLayer)
 
   def initGui(self):
     # Create action that will start plugin configuration
@@ -101,38 +102,11 @@ class CoverageBuilder(object):
     self.iface.addPluginToMenu("&Coverage Builder", self.action_help)
 
   def updateBoxes(self):
-    self.updateLayers()
+    #self.updateLayers()
     self.updateLayouts()
     self.updateMaps()
-
-  def updateLayers(self):
-    self.dlg.ui.cbbInLayer.clear()
-#    # ajh: this method shows layers that are turned off, but doesn't show layers in embedded projects, and lists top level groups but not layers inside them...
-#    # Fetch the currently loaded layers
-#    layers = QgsProject.instance().layerTreeRoot().children()
-#    # Populate the comboBox with names of all the loaded layers
-#    self.dlg.ui.cbbInLayer.addItems([layer.name() for layer in layers])
-    # ajh: this shows both raster and vector layers that are turned on!  We want vector layers whether or not they are turned on.
-    for layer in self.iface.mapCanvas().layers():
-      if layer.type() == QgsMapLayer.VectorLayer:
-        #self.dlg.ui.cbbInLayer.addItem(layer.name(), QVariant(layer))
-        self.dlg.ui.cbbInLayer.addItem(layer.name(), layer)
-        if layer in self.iface.layerTreeView().selectedLayers():
-          self.dlg.ui.cbbInLayer.setCurrentIndex(self.dlg.ui.cbbInLayer.count()-1)
-          # see mmqis source if we want to remove duplicates
-
-  # (c) Carson Farmer / fTools
-  def getVectorLayerByName(self,myName):
-    layermap = QgsProject.instance().mapLayers()
-    for name, layer in layermap.items():
-      if layer.type() == QgsMapLayer.VectorLayer and layer.name() == myName:
-        if layer.isValid():
-          return layer
-        else:
-          return None 
-
   def onLayerChange(self):
-    self.cLayer = self.getVectorLayerByName(self.dlg.ui.cbbInLayer.currentText())
+    self.cLayer = self.dlg.ui.cbbInLayer.currentLayer()
 
   def updateLayouts(self):
     self.dlg.ui.cbbComp.clear()

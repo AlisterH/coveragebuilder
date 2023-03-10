@@ -153,7 +153,7 @@
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QComboBox" name="cbbInLayer"/>
+     <widget class="QgsMapLayerComboBox" name="cbbInLayer"/>
     </item>
    </layout>
   </widget>
@@ -334,6 +334,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
