@@ -61,6 +61,9 @@ class CoverageBuilder(object):
     # create and show the dialog
     self.dlg = CoverageBuilderDialog()
     self.dlg.ui.cbbInLayer.setFilters(QgsMapLayerProxyModel.VectorLayer)
+    QgsProject.instance().layoutManager().layoutAdded.connect(self.updateLayouts)
+    QgsProject.instance().layoutManager().layoutRemoved.connect(self.updateLayouts)
+    QgsProject.instance().layoutManager().layoutRenamed.connect(self.updateLayouts)
 
   def initGui(self):
     # Create action that will start plugin configuration
@@ -85,8 +88,6 @@ class CoverageBuilder(object):
     self.dlg.ui.cbbInLayer.currentIndexChanged.connect(self.onLayerChange)
     # browse button
     self.dlg.ui.btnBrowse.clicked.connect(self.updateOutputDir)
-    # refresh template button
-    self.dlg.ui.btnUpdate.clicked.connect(self.updateLayouts)
     # show layout
     self.dlg.ui.btnShow.clicked.connect(self.showLayout)
     # show about dialog
