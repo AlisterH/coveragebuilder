@@ -10,6 +10,6 @@ qgisMaximumVersion=3.99
 class_name=CoverageBuilder
 homepage=https://github.com/alisterh/coveragebuilder
 repository=https://github.com/alisterh/coveragebuilder
-tracker=homepage=https://github.com/alisterh/coveragebuilder/issues
+tracker=https://github.com/alisterh/coveragebuilder/issues
 icon=icon.png
 experimental=True
