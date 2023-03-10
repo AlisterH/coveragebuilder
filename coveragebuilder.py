@@ -110,6 +110,7 @@ class CoverageBuilder(object):
     self.cLayer = self.dlg.ui.cbbInLayer.currentLayer()
 
   def updateLayouts(self):
+    #ajh: we should be able to use a QgsLayoutComboBox instead of coding all this, but I had trouble getting it to work
     self.dlg.ui.cbbComp.clear()
     projectInstance = QgsProject.instance()
     projectLayoutManager = projectInstance.layoutManager()
@@ -125,7 +126,17 @@ class CoverageBuilder(object):
       self.layout = self.layouts[self.dlg.ui.cbbComp.currentIndex()]
 
   def showLayout(self):
-    iface.openLayoutDesigner(self.layout)
+    #ajh: we should really make the button only active when there is a layout
+    #     but it is more useful to create a layout
+    if self.layout:
+      iface.openLayoutDesigner(self.layout)
+    else:
+      self.layout = QgsPrintLayout(QgsProject.instance())
+      self.layout.initializeDefaults()
+      self.layout.setName("Layout 1")
+      QgsProject.instance().layoutManager().addLayout(self.layout)
+      iface.openLayoutDesigner(self.layout)
+      QMessageBox.information(None,"Info", "There were no print layouts, so we have created one.\nYou must add a map and set it up.")
 
   def updateOutputDir(self):
     self.dlg.ui.lieOutDir.setText(QFileDialog.getExistingDirectory(self.dlg, \
@@ -213,7 +224,7 @@ class CoverageBuilder(object):
                 QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 50"))
           else:
               QMessageBox.information(None,"Info", \
-                  QCoreApplication.translate("coveragebuilder","There is no map object for print layout selected"))
+                  QCoreApplication.translate("coveragebuilder","There is no map in the selected layout.\nYou must add a map and set it up."))
         else:
           QMessageBox.information(None,"Info", \
             QCoreApplication.translate("coveragebuilder","Please select a print layout, if none exist you need to create one"))
