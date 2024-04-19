@@ -2,11 +2,12 @@
 name=Coverage Builder
 description=Create rectangles to use as an input layer for atlas generation.
 about=This is an updated version of the &quot;Grids for Atlas&quot; plugin, previously published by:<p align="center">Experts SIG / <a href="https://www.biotope.fr/">Biotope</a><br/>Bertrand Chaussat<br/>Dmitry Kiselev</p>
-version=version 0.5.0
+version=version 0.5.1
 author=Alister Hood
 email=alister.hood@gmail.com
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
+supportsQt6=yes
 class_name=CoverageBuilder
 homepage=https://github.com/alisterh/coveragebuilder
 repository=https://github.com/alisterh/coveragebuilder

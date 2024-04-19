@@ -60,7 +60,7 @@ class CoverageBuilder(object):
     #        QCoreApplication.installTranslator(self.translator)
     # create and show the dialog
     self.dlg = CoverageBuilderDialog()
-    self.dlg.ui.cbbInLayer.setFilters(QgsMapLayerProxyModel.VectorLayer)
+    self.dlg.ui.cbbInLayer.setFilters(QgsMapLayerProxyModel.Filter.VectorLayer)
     QgsProject.instance().layoutManager().layoutAdded.connect(self.updateLayouts)
     QgsProject.instance().layoutManager().layoutRemoved.connect(self.updateLayouts)
     QgsProject.instance().layoutManager().layoutRenamed.connect(self.updateLayouts)
@@ -221,7 +221,7 @@ class CoverageBuilder(object):
                 QCoreApplication.translate("coveragebuilder","Overlap % must be between 0 and 50"))
           else:
               QMessageBox.information(None,"Info", \
-                  QCoreApplication.translate("coveragebuilder","There is no map in the selected layout.\nYou must add a map and set it up."))
+                  QCoreApplication.translate("coveragebuilder","There is no map in the selected layout.\nYou must add a map and set the scale."))
         else:
           QMessageBox.information(None,"Info", \
             QCoreApplication.translate("coveragebuilder","Please select a print layout, if none exist you need to create one"))
@@ -373,9 +373,9 @@ class CoverageBuilder(object):
     # Wite to file 
     error, error_string = QgsVectorFileWriter.writeAsVectorFormat(layer, shapePath, \
       "CP1250", layer.crs(), "ESRI Shapefile")
-    if error != QgsVectorFileWriter.NoError:
+    if error != QgsVectorFileWriter.WriterError.NoError:
       QMessageBox.information(None,"Info", \
-        QCoreApplication.translate("coveragebuilder","Error when creating shapefile:\n") + shapePath + QCoreApplication.translate("coveragebuilder","\nPlease delete or rename the existing output files"))
+        QCoreApplication.translate("coveragebuilder","Error when creating shapefile:\n") + shapePath + QCoreApplication.translate("coveragebuilder","\nCannot overwrite in-use layer - make sure it is not currently loaded in QGIS."))
 
   def intersect(self, perimetre, calepinage):
   # Intersect between input layer and coverage layer
@@ -485,7 +485,7 @@ class CoverageBuilder(object):
     adialog.ui = Ui_About_window()
     adialog.ui.setupUi(adialog)
     adialog.show()
-    result = adialog.exec_()
+    result = adialog.exec()
     del adialog
 
   # run method that performs all the real work
@@ -493,7 +493,7 @@ class CoverageBuilder(object):
     self.updateBoxes()
     # show the dialog
     self.dlg.show()
-    result = self.dlg.exec_()
+    result = self.dlg.exec()
     # See if OK was pressed
     if result == 1:
       # do something useful (delete the line containing pass and
