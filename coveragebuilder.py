@@ -84,8 +84,6 @@ class CoverageBuilder(object):
     # layout changed, update maps
     # ajh: since we now don't allow to select the map we only use this to update self.layout 
     self.dlg.ui.cbbComp.currentIndexChanged.connect(self.updateMaps)
-    # refresh inLayer box
-    self.dlg.ui.cbbInLayer.currentIndexChanged.connect(self.onLayerChange)
     # browse button
     self.dlg.ui.btnBrowse.clicked.connect(self.updateOutputDir)
     # show layout
@@ -106,8 +104,6 @@ class CoverageBuilder(object):
     #self.updateLayers()
     self.updateLayouts()
     self.updateMaps()
-  def onLayerChange(self):
-    self.cLayer = self.dlg.ui.cbbInLayer.currentLayer()
 
   def updateLayouts(self):
     #ajh: we should be able to use a QgsLayoutComboBox instead of coding all this, but I had trouble getting it to work
@@ -172,6 +168,7 @@ class CoverageBuilder(object):
               self.overlapH = self.ladderHeight * self.ladderOvrlpPercent / 200;
               self.ladderWidth = self.ladderWidth - self.overlapW * 2.;
               self.ladderHeight = self.ladderHeight - self.overlapH * 2.;
+              self.cLayer = self.dlg.ui.cbbInLayer.currentLayer()
               if self.cLayer:
                 if self.cLayer.type() == 0:
                   self.crs = self.cLayer.crs()
