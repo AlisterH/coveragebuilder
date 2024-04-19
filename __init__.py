@@ -27,7 +27,7 @@ def name():
 def description():
     return "Create rectangles to use as an input layer for atlas generation"
 def version():
-    return "version 0.5.0"
+    return "version 0.5.1"
 def icon():
     return "icon.png"
 def qgisMinimumVersion():
